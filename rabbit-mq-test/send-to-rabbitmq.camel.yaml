@@ -1,0 +1,26 @@
+- route:
+    id: route-9af7
+    nodePrefixId: route-e4d
+    from:
+      id: from-8822
+      uri: timer
+      parameters:
+        period: "5000"
+        timerName: Hii
+      steps:
+        - setBody:
+            id: setBody-dd2f
+            expression:
+              simple:
+                id: simple-a805
+                expression: Message sent to RabbitMQ at ${date:now:yyyy-MM-dd HH:mm:ss} `
+        - to:
+            id: to-7fa6
+            uri: kamelet:spring-rabbitmq-sink
+            parameters:
+              host: rabbitmq
+              port: 5672
+              routingKey: test-queue
+              username: "{{env:MQ_USER}}"
+              password: "{{env:MQ_PASSWORD}}"
+              exchangeName: default
