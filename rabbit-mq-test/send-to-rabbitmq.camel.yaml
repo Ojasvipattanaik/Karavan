@@ -15,12 +15,11 @@
                 id: simple-d548
                 expression: Message sent to RabbitMQ at ${date:now:yyyy-MM-dd HH:mm:ss} `
         - to:
-            id: to-130c
+            id: to-505b
             uri: kamelet:spring-rabbitmq-sink
             parameters:
-              host: rabbitmq
               port: 5672
               routingKey: test-queue
-              exchangeName: default
               username: "{{env:MQ_USER}}"
               password: "{{env:MQ_PASSWORD}}"
+              exchangeName: default
